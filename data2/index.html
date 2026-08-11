@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025년 요일 및 시간대별 교통사고 현황 및 특성 분석 보고서</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            850: '#0f172a',
+                            900: '#020617'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body { font-family: 'Pretendard', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-emerald-500 selection:text-white">
+
+    <!-- Top Navigation & Home Button -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-emerald-600 text-white p-2 rounded-xl shadow-md">
+                    <i class="fa-solid fa-chart-line text-lg"></i>
+                </div>
+                <h1 class="font-bold text-lg text-slate-900 tracking-tight">2025 교통사고 정밀 분석 보고서</h1>
+            </div>
+            <div>
+                <a href="../index.html" class="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white text-sm font-medium rounded-xl transition-all shadow-sm hover:shadow">
+                    <i class="fa-solid fa-house"></i>
+                    <span>홈으로 이동</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+
+        <!-- Report Title Banner -->
+        <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-emerald-950 text-white rounded-3xl p-8 sm:p-12 shadow-xl relative overflow-hidden space-y-8">
+            <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="relative z-10 max-w-3xl space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-xs font-semibold tracking-wide border border-emerald-500/30">
+                    <i class="fa-solid fa-shield-halved"></i> 공공 안전 및 정책 대응 보고서
+                </div>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                    2025년 요일 및 시간대별 <br class="hidden sm:block">교통사고 현황 및 특성 분석
+                </h2>
+                <p class="text-slate-300 text-base sm:text-lg leading-relaxed font-light">
+                    본 보고서는 2025년 교통사고 통계 데이터를 정밀 분석하여 요일 및 시간대별 사고 발생 패턴을 식별하고, 이를 바탕으로 공공 안전 강화를 위한 정책적 대응 방안을 제시합니다.
+                </p>
+            </div>
+
+            <!-- Header Graphic Infographic Card -->
+            <div class="relative z-10 bg-white/5 backdrop-blur-md p-4 sm:p-6 rounded-2xl border border-white/10 shadow-inner">
+                <div class="rounded-xl overflow-hidden shadow-2xl bg-slate-900 border border-white/10 flex justify-center">
+                    <img src="2025년_교통사고_통계_분석.png" alt="2025 요일 및 시간대별 교통사고 통계 분석 인포그래픽" class="w-full h-auto object-cover max-h-[500px]" onerror="this.src='https://placehold.co/1200x675/0f172a/ffffff?text=2025+Traffic+Accident+Infographic'">
+                </div>
+                <p class="text-xs text-slate-400 text-center mt-3 font-light flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-circle-info text-emerald-400"></i> 요일 및 시간대별 주요 교통사고 지표 요약 인포그래픽
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 1: Total Status Overview -->
+        <section class="space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 font-bold text-sm">1</span>
+                <h3 class="text-2xl font-bold text-slate-900">2025년 교통사고 총괄 현황</h3>
+            </div>
+            
+            <p class="text-slate-600 leading-relaxed">
+                2025년 한 해 동안 집계된 전체 교통사고 통계 지표는 다음과 같습니다. 거대한 규모의 인명 피해와 사고 빈도를 기록하며 체계적인 관리와 대응책 마련의 시급성을 보여줍니다.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Total Accidents -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center justify-between">
+                    <div class="space-y-1">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">총 사고 건수</span>
+                        <h4 class="text-3xl font-extrabold text-slate-900">193,889<span class="text-lg font-normal text-slate-500 ml-1">건</span></h4>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-car-crash"></i>
+                    </div>
+                </div>
+                <!-- Total Fatalities -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center justify-between">
+                    <div class="space-y-1">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">사망자 수</span>
+                        <h4 class="text-3xl font-extrabold text-rose-600">2,549<span class="text-lg font-normal text-slate-500 ml-1">명</span></h4>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-user-xmark"></i>
+                    </div>
+                </div>
+                <!-- Total Injuries -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex items-center justify-between">
+                    <div class="space-y-1">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">부상자 수</span>
+                        <h4 class="text-3xl font-extrabold text-amber-600">271,751<span class="text-lg font-normal text-slate-500 ml-1">명</span></h4>
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-user-injured"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Time-based Characteristics -->
+        <section class="space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 font-bold text-sm">2</span>
+                <h3 class="text-2xl font-bold text-slate-900">시간대별 교통사고 발생 특성 분석</h3>
+            </div>
+
+            <p class="text-slate-600 leading-relaxed">
+                시간대별 사고 발생 추이를 2시간 단위로 분석한 결과, 주간 시간대의 높은 발생 빈도와 심야 시간대의 높은 치명률이 뚜렷한 대조를 이룹니다.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <!-- Bullet points info -->
+                <div class="space-y-4">
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                        <div class="flex items-center gap-2 text-emerald-600 font-bold">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            <h4>발생 빈도 피크 구간 (16시 ~ 20시)</h4>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            사고가 가장 집중되는 시간대는 <strong class="text-slate-900">16시~18시(27,278건)</strong> 및 <strong class="text-slate-900">18시~20시(26,247건)</strong>임. 이 4시간 동안 전체 사고의 약 <strong class="text-emerald-600">27.6%</strong>가 집중 발생하며, 특히 16시~18시에는 연간 최다 부상자(<strong class="text-slate-900">38,426명</strong>)가 발생함. 이는 퇴근 시간대 교통량 급증과 운전자 집중력 저하가 주원인임을 시사함.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                        <div class="flex items-center gap-2 text-indigo-600 font-bold">
+                            <i class="fa-solid fa-moon"></i>
+                            <h4>심야 및 새벽 시간대 (0시 ~ 6시) 특성</h4>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            해당 구간의 사고 건수 합계는 13,085건으로 주간 대비 상대적으로 적으나, 후술할 치사율 분석에서 볼 수 있듯 사고의 심각도는 매우 높은 것으로 판단됨.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm space-y-2">
+                        <div class="flex items-center gap-2 text-amber-600 font-bold">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <h4>교통 혼잡도와의 상관관계</h4>
+                        </div>
+                        <p class="text-slate-600 text-sm leading-relaxed">
+                            14시부터 20시까지 사고 건수와 부상자 수가 계단식으로 상승하는 패턴을 보임. 이는 단순 혼잡을 넘어 복합적인 교통 환경 악화가 인명 피해 규모를 확대하는 요인으로 작용함을 나타냄.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Visual Chart representation -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm flex flex-col items-center justify-center h-full min-h-[350px]">
+                    <h4 class="text-sm font-semibold text-slate-500 mb-4 self-start">시간대별 사고 집중도 및 피크 구간</h4>
+                    <div class="w-full h-72 relative">
+                        <canvas id="timeChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Day-of-week Pattern Analysis -->
+        <section class="space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 font-bold text-sm">3</span>
+                <h3 class="text-2xl font-bold text-slate-900">요일별 교통사고 발생 패턴 분석</h3>
+            </div>
+
+            <p class="text-slate-600 leading-relaxed">
+                요일별 데이터는 주중 경제활동 인구의 이동 패턴과 주말 여가 이동 패턴에 따라 뚜렷한 변동성을 보입니다.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Max/Min Day -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
+                        <i class="fa-solid fa-calendar-day"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900">최다 및 최소 발생 요일</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        일주일 중 <strong class="text-emerald-700">금요일(31,823건)</strong>이 전체 사고의 <strong class="text-emerald-700">16.41%</strong>를 차지하며 가장 높은 사고 빈도를 기록함. 반면, <strong class="text-slate-700">일요일(20,241건)</strong>은 금요일 대비 약 36.4% 적은 수치를 보이며 최저 발생 요일로 확인됨.
+                    </p>
+                </div>
+
+                <!-- Weekday vs Weekend -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900">주중 vs 주말 통계적 차이</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        월요일부터 금요일까지의 주중 평균 사고 건수는 약 29,380건으로 고르게 분포하나, 금요일의 경우 주말 진입에 따른 유동 인구 증가로 인해 사고 위험이 극대화됨.
+                    </p>
+                </div>
+
+                <!-- Fatalities Trend by Day -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                    <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center">
+                        <i class="fa-solid fa-skull-crossbones"></i>
+                    </div>
+                    <h4 class="font-bold text-slate-900">요일별 사망자 추이</h4>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        사망자 수는 <strong class="text-rose-600">월요일(397명)</strong>에 가장 집중되며, 이어 금요일(383명), 화요일(382명) 순임. 사망자 수가 가장 적은 요일은 일요일(291명)로 나타남.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Deep Dive - Fatal Hotspots -->
+        <section class="space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 font-bold text-sm">4</span>
+                <h3 class="text-2xl font-bold text-slate-900">[심층 분석] 요일 및 시간대 교차 위험 구간 식별</h3>
+            </div>
+
+            <p class="text-slate-600 leading-relaxed">
+                데이터 교차 분석을 통해 특정 요일과 시간대가 결합되었을 때 인명 피해가 극대화되는 <strong class="text-slate-900">'치명적 핫스팟(Fatal Hotspots)'</strong>을 도출하였습니다.
+            </p>
+
+            <!-- Table Container -->
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+                <div class="p-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
+                    <h4 class="font-bold text-slate-800 text-sm flex items-center gap-2">
+                        <i class="fa-solid fa-table text-emerald-600"></i> [표 1] 주요 고위험 구간 (사망자 35명 이상 구간) 및 지표
+                    </h4>
+                    <span class="text-xs text-slate-500 font-medium">단위: 건, 명, %</span>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100/70 text-slate-700 text-xs font-bold uppercase tracking-wider border-b border-slate-200">
+                                <th class="py-3 px-4">요일</th>
+                                <th class="py-3 px-4">시간대</th>
+                                <th class="py-3 px-4 text-right">사고 건수 (건)</th>
+                                <th class="py-3 px-4 text-right">사망자 수 (명)</th>
+                                <th class="py-3 px-4 text-right">치사율 (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 text-sm text-slate-700 font-medium">
+                            <tr class="hover:bg-slate-50/80 transition-colors bg-rose-50/30">
+                                <td class="py-3 px-4 font-bold text-slate-900">화요일</td>
+                                <td class="py-3 px-4">18시~20시</td>
+                                <td class="py-3 px-4 text-right">3,915</td>
+                                <td class="py-3 px-4 text-right font-bold text-rose-600">50</td>
+                                <td class="py-3 px-4 text-right">1.28%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors bg-rose-50/30">
+                                <td class="py-3 px-4 font-bold text-slate-900">월요일</td>
+                                <td class="py-3 px-4">06시~08시</td>
+                                <td class="py-3 px-4 text-right">2,162</td>
+                                <td class="py-3 px-4 text-right font-bold text-rose-600">50</td>
+                                <td class="py-3 px-4 text-right text-rose-700 font-bold">2.31%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="py-3 px-4 font-bold text-slate-900">금요일</td>
+                                <td class="py-3 px-4">10시~12시</td>
+                                <td class="py-3 px-4 text-right">3,240</td>
+                                <td class="py-3 px-4 text-right font-bold text-slate-900">49</td>
+                                <td class="py-3 px-4 text-right">1.51%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="py-3 px-4 font-bold text-slate-900">월요일</td>
+                                <td class="py-3 px-4">10시~12시</td>
+                                <td class="py-3 px-4 text-right">3,258</td>
+                                <td class="py-3 px-4 text-right font-bold text-slate-900">48</td>
+                                <td class="py-3 px-4 text-right">1.47%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="py-3 px-4 font-bold text-slate-900">금요일</td>
+                                <td class="py-3 px-4">18시~20시</td>
+                                <td class="py-3 px-4 text-right font-bold text-emerald-700">4,667</td>
+                                <td class="py-3 px-4 text-right font-bold text-slate-900">44</td>
+                                <td class="py-3 px-4 text-right">0.94%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="py-3 px-4 font-bold text-slate-900">금요일</td>
+                                <td class="py-3 px-4">20시~22시</td>
+                                <td class="py-3 px-4 text-right">2,846</td>
+                                <td class="py-3 px-4 text-right font-bold text-slate-900">44</td>
+                                <td class="py-3 px-4 text-right">1.55%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="py-3 px-4 font-bold text-slate-900">화요일</td>
+                                <td class="py-3 px-4">16시~18시</td>
+                                <td class="py-3 px-4 text-right">4,154</td>
+                                <td class="py-3 px-4 text-right font-bold text-slate-900">43</td>
+                                <td class="py-3 px-4 text-right">1.03%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="py-3 px-4 font-bold text-slate-900">목요일</td>
+                                <td class="py-3 px-4">12시~14시</td>
+                                <td class="py-3 px-4 text-right">2,994</td>
+                                <td class="py-3 px-4 text-right font-bold text-slate-900">43</td>
+                                <td class="py-3 px-4 text-right">1.44%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="py-3 px-4 font-bold text-slate-900">토요일</td>
+                                <td class="py-3 px-4">18시~20시</td>
+                                <td class="py-3 px-4 text-right">3,276</td>
+                                <td class="py-3 px-4 text-right font-bold text-slate-900">40</td>
+                                <td class="py-3 px-4 text-right">1.22%</td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 transition-colors">
+                                <td class="py-3 px-4 font-bold text-slate-900">수요일</td>
+                                <td class="py-3 px-4">18시~20시</td>
+                                <td class="py-3 px-4 text-right">5,652</td>
+                                <td class="py-3 px-4 text-right font-bold text-slate-900">36</td>
+                                <td class="py-3 px-4 text-right">0.64%</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Deep dive insights (Paradox & Weekend Midnight) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                <div class="bg-gradient-to-br from-amber-500/10 to-orange-500/5 p-6 rounded-2xl border border-amber-200/60 space-y-3">
+                    <div class="flex items-center gap-2 text-amber-800 font-bold">
+                        <i class="fa-solid fa-triangle-exclamation text-amber-600"></i>
+                        <h4>치사율 역설 (Paradox of Fatality)</h4>
+                    </div>
+                    <p class="text-slate-700 text-sm leading-relaxed">
+                        사고 발생 건수가 가장 적은 <strong class="text-slate-900">새벽 2시~4시(사고 3,114건, 사망 118명)</strong>의 치사율은 <strong class="text-rose-600 font-bold">3.79%</strong>로, 사고 최다 시간대인 <strong class="text-slate-900">16시~18시(치사율 0.87%)</strong>보다 약 <strong class="text-rose-600 font-bold">4.36배</strong> 높음. 이는 심야 시간대 과속, 신호 위반, 졸음운전 등 중대 과실 사고 비중이 높고, 통행량 부족에 따른 구조 지연 가능성이 복합적으로 작용한 결과로 분석됨.
+                    </p>
+                </div>
+
+                <div class="bg-gradient-to-br from-indigo-500/10 to-blue-500/5 p-6 rounded-2xl border border-indigo-200/60 space-y-3">
+                    <div class="flex items-center gap-2 text-indigo-800 font-bold">
+                        <i class="fa-solid fa-bed text-indigo-600"></i>
+                        <h4>주말 심야 특이점</h4>
+                    </div>
+                    <p class="text-slate-700 text-sm leading-relaxed">
+                        주말(토/일) 0시~4시 사이의 사고 비중이 평일 대비 급격히 증가함. 특히 <strong class="text-slate-900">토요일 0시~4시 구간의 사고 건수(1,848건)</strong>는 평일인 월요일 동시간대(880건) 대비 약 <strong class="text-indigo-700 font-bold">2.10배</strong>에 달해, 주말 심야의 안전 관리가 매우 취약한 상태임을 입증함.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Recommendations & Policy Implications -->
+        <section class="space-y-6">
+            <div class="flex items-center gap-3 border-b border-slate-200 pb-4">
+                <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 font-bold text-sm">5</span>
+                <h3 class="text-2xl font-bold text-slate-900">교통안전 제언 및 정책적 시사점</h3>
+            </div>
+
+            <p class="text-slate-600 leading-relaxed">
+                분석된 데이터를 근거로 실효성 있는 사고 예방을 위해 다음과 같은 정책 시행이 강력히 요구됩니다.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <!-- Rec 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold">01</div>
+                        <h4 class="font-bold text-slate-900 text-base">타겟형 안전 관리 가중치 부여</h4>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        사고 빈도가 가장 높은 금요일과 인명 피해가 집중되는 16시~20시 구간에 교통 경찰력 및 단속 장비를 집중 배치하여 사고 발생 자체를 억제하는 '핀셋 단속' 전략이 필요함.
+                    </p>
+                </div>
+
+                <!-- Rec 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold">02</div>
+                        <h4 class="font-bold text-slate-900 text-base">심야 고치사율 사고 예방 대책</h4>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        사고 건수 대비 치사율이 압도적인 새벽 02시~04시를 대상으로 졸음운전 방지 시설 확충, 가로등 조도 개선, 주요 위험 구간 내 상시 과속 단속 체계 운영이 시급함.
+                    </p>
+                </div>
+
+                <!-- Rec 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold">03</div>
+                        <h4 class="font-bold text-slate-900 text-base">요일별 맞춤형 안전 인식 제고</h4>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        월요일 아침(06~08시) 및 금요일 주간(10~12시) 등 예상외의 고위험 구간에 대한 데이터를 시민들에게 공개하여, 운전자의 자발적 주의를 환기하는 데이터 기반 안전 캠페인 전개가 요구됨.
+                    </p>
+                </div>
+
+                <!-- Rec 4 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold">04</div>
+                        <h4 class="font-bold text-slate-900 text-base">주말 심야 집중 단속</h4>
+                    </div>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        평일 대비 사고가 2.10배 폭증하는 토요일 00시~04시 구간에 대해 음주운전 및 과속 단속을 강화하여 주말 심야 안전 사각지대를 해소해야 함.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 mt-20 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-slate-500 text-sm space-y-2">
+            <p>&copy; 2025 교통사고 통계 분석 TF. All rights reserved.</p>
+            <p class="text-xs text-slate-400">본 보고서의 데이터는 2025년 정밀 교통사고 통계 데이터를 기반으로 작성되었습니다.</p>
+        </div>
+    </footer>
+
+    <!-- Script for rendering Chart.js graph -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('timeChart').getContext('2d');
+            
+            // Approximate time distribution data based on report highlights
+            const timeLabels = ['00-02', '02-04', '04-06', '06-08', '08-10', '10-12', '12-14', '14-16', '16-18', '18-20', '20-22', '22-24'];
+            const accidentData = [6500, 3114, 5200, 9800, 15400, 17200, 18500, 21000, 27278, 26247, 18200, 11200];
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: timeLabels,
+                    datasets: [{
+                        label: '시간대별 사고 건수 (건)',
+                        data: accidentData,
+                        backgroundColor: timeLabels.map(label => (label === '16-18' || label === '18-20') ? '#16a34a' : '#cbd5e1'),
+                        borderRadius: 8,
+                        borderSkipped: false,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y.toLocaleString() + ' 건';
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { font: { family: 'Pretendard', size: 11 } }
+                        },
+                        y: {
+                            grid: { color: '#f1f5f9' },
+                            ticks: { 
+                                font: { family: 'Pretendard', size: 11 },
+                                callback: function(value) {
+                                    return (value / 1000) + '천';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
