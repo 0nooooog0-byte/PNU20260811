@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박진욱 포트폴리오 | 데이터 분석가 & 연구원</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                            900: '#312e81'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans KR', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; }
+        
+        /* Light mode global defaults */
+        body {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+        
+        /* Dark mode global overrides */
+        .dark body, body.dark {
+            background-color: #030712 !important;
+            color: #f8fafc !important;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            border: 1px solid #cbd5e1;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+        }
+        .dark .glass-card {
+            background: rgba(13, 19, 38, 0.95) !important;
+            backdrop-filter: blur(16px);
+            border: 1px solid #1e293b !important;
+            box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.5) !important;
+        }
+    </style>
+    <script>
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.body.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+            document.body.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-slate-50 dark:bg-gray-950 text-slate-900 dark:text-slate-100 antialiased selection:bg-indigo-500 selection:text-white transition-colors duration-300">
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-[#030712]/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-indigo-500/30">
+                    JW
+                </div>
+                <div>
+                    <span class="text-lg font-bold tracking-tight block text-slate-900 dark:text-white">박진욱</span>
+                    <span class="text-xs text-indigo-600 dark:text-indigo-400 font-semibold uppercase tracking-wider">Portfolio & Research</span>
+                </div>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-700 dark:text-slate-300">
+                <a href="#about" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">소개</a>
+                <a href="#reports" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">핵심 보고서</a>
+                <a href="#skills" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">보유 기술</a>
+                <a href="#contact" class="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">연락처</a>
+            </nav>
+            <div class="flex items-center space-x-4">
+                <!-- Theme Toggle Button -->
+                <button onclick="toggleTheme()" aria-label="테마 변경" class="w-11 h-11 rounded-xl bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-amber-300 flex items-center justify-center hover:bg-slate-300 dark:hover:bg-slate-700 transition-all shadow-md border border-slate-300 dark:border-slate-700">
+                    <i id="themeIcon" class="fa-solid fa-moon dark:fa-sun text-lg"></i>
+                </button>
+                <a href="#reports" class="hidden sm:inline-flex px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-sm shadow-md shadow-indigo-500/20 transition-all transform hover:-translate-y-0.5">
+                    보고서 확인하기
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20">
+        <section class="relative overflow-hidden py-24 lg:py-32 bg-gradient-to-b from-indigo-50/70 via-white to-slate-100 dark:from-[#080e24] dark:via-[#030712] dark:to-[#02040a]">
+            <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-950/80 border border-indigo-300 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300 text-xs font-semibold uppercase tracking-wider">
+                            <span class="w-2 h-2 rounded-full bg-indigo-600 dark:bg-indigo-400 animate-pulse"></span>
+                            <span>데이터 분석가 박진욱 포트폴리오</span>
+                        </div>
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+                            데이터로 세상을 읽고, <br class="hidden sm:inline">
+                            <span class="bg-gradient-to-r from-indigo-600 to-violet-600 dark:from-indigo-400 dark:to-violet-400 bg-clip-text text-transparent">인사이트를 창조</span>합니다
+                        </h1>
+                        <p class="text-lg sm:text-xl text-slate-700 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 font-normal">
+                            대학알리미 공공데이터 기반 <strong>진로 및 교육 통계 분석</strong>부터 도로교통공단 데이터 기반 <strong>교통안전 및 효율성 분석</strong>까지, 신뢰할 수 있는 데이터로 최적의 솔루션을 제시합니다.
+                        </p>
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                            <a href="#reports" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-xl shadow-indigo-600/30 transition-all flex items-center justify-center space-x-3 group">
+                                <span>보고서 카드 탐색하기</span>
+                                <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
+                            </a>
+                            <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-900 dark:text-slate-100 font-semibold border border-slate-300 dark:border-slate-700 transition-all flex items-center justify-center space-x-2 shadow-sm">
+                                <i class="fa-solid fa-user-circle text-indigo-600 dark:text-indigo-400"></i>
+                                <span>프로필 소개</span>
+                            </a>
+                        </div>
+                        <div class="pt-6 grid grid-cols-3 gap-6 max-w-lg mx-auto lg:mx-0 border-t border-slate-200 dark:border-slate-800">
+                            <div>
+                                <p class="text-3xl font-extrabold text-slate-900 dark:text-white">2+</p>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 font-medium">심층 분석 보고서</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-extrabold text-slate-900 dark:text-white">100%</p>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 font-medium">공공 데이터 활용</p>
+                            </div>
+                            <div>
+                                <p class="text-3xl font-extrabold text-slate-900 dark:text-white">Pro</p>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 mt-1 font-medium">인사이트 도출</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5">
+                        <div class="relative mx-auto max-w-md lg:max-w-none">
+                            <div class="absolute -inset-1.5 bg-gradient-to-r from-indigo-600 to-violet-600 rounded-3xl blur-xl opacity-30 dark:opacity-50 animate-pulse"></div>
+                            <div class="relative glass-card rounded-3xl p-8 shadow-2xl space-y-6">
+                                <div class="flex items-center space-x-4">
+                                    <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-indigo-500 to-violet-600 flex items-center justify-center text-white text-2xl font-bold shadow-lg">
+                                        <i class="fa-solid fa-chart-line"></i>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">박진욱 (Jinwook Park)</h3>
+                                        <p class="text-sm text-indigo-600 dark:text-indigo-400 font-medium">Data Analyst & Researcher</p>
+                                    </div>
+                                </div>
+                                <div class="space-y-3 text-sm text-slate-700 dark:text-slate-300">
+                                    <div class="flex items-center space-x-3 p-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60">
+                                        <i class="fa-solid fa-graduation-cap text-indigo-600 dark:text-indigo-400 w-5"></i>
+                                        <span><strong>대학알리미 기반</strong> 진로 및 취업 통계 분석</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3 p-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60">
+                                        <i class="fa-solid fa-car text-indigo-600 dark:text-indigo-400 w-5"></i>
+                                        <span><strong>도로교통공단 데이터</strong> 기반 교통 사고·흐름 분석</span>
+                                    </div>
+                                    <div class="flex items-center space-x-3 p-3 rounded-xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/60">
+                                        <i class="fa-solid fa-code text-indigo-600 dark:text-indigo-400 w-5"></i>
+                                        <span>Python, SQL, R, Tableau 시각화 역량</span>
+                                    </div>
+                                </div>
+                                <div class="pt-2">
+                                    <a href="#contact" class="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 dark:bg-indigo-600 dark:hover:bg-indigo-500 text-white font-medium text-sm text-center block shadow transition-all">
+                                        프로젝트 협업 제안하기
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reports" class="py-24 bg-slate-200/70 dark:bg-[#060a17]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                    <span class="px-3.5 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-950/90 border border-indigo-300 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300 text-xs font-semibold uppercase tracking-wider">
+                        Featured Research Reports
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                        핵심 분석 보고서 카드
+                    </h2>
+                    <p class="text-slate-700 dark:text-slate-300 text-base sm:text-lg">
+                        공공데이터를 엄밀하게 수집·가공하여 도출한 두 가지 핵심 분석 보고서입니다. 카드를 클릭하여 상세 내용을 확인하세요.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                    <!-- Report Card 1: Career Report -->
+                    <div class="glass-card rounded-3xl p-8 shadow-xl flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl group border-t-4 border-indigo-600">
+                        <div class="space-y-6">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-800 dark:text-indigo-300 font-semibold text-xs uppercase tracking-wider">
+                                    대학알리미 기반
+                                </span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium"><i class="fa-regular fa-calendar mr-1"></i> 종합 진로 보고서</span>
+                            </div>
+                            <div class="w-14 h-14 rounded-2xl bg-indigo-600/10 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-2xl font-bold group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                                    대학생 진로 및 취업 통계 심층 분석 보고서
+                                </h3>
+                                <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                                    ‘대학알리미(Higher Education in Korea)’의 방대한 공공 데이터를 활용하여 대학별 취업률, 진로 선택 경향, 전공별 고용 유지율 및 산업별 취업 분포를 다각도로 분석했습니다.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">대학알리미 API</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">취업률 통계</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">데이터 시각화</span>
+                            </div>
+                        </div>
+                        <div class="pt-8 mt-8 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                            <span class="text-xs text-slate-500 font-medium">작성자: 박진욱</span>
+                            <button onclick="openModal('careerModal')" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-sm shadow-md shadow-indigo-500/20 transition-all flex items-center space-x-2">
+                                <span>보고서 전문 보기</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Report Card 2: Traffic Report -->
+                    <div class="glass-card rounded-3xl p-8 shadow-xl flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl group border-t-4 border-violet-600">
+                        <div class="space-y-6">
+                            <div class="flex items-center justify-between">
+                                <span class="px-3 py-1 rounded-lg bg-violet-100 dark:bg-violet-950 text-violet-800 dark:text-violet-300 font-semibold text-xs uppercase tracking-wider">
+                                    도로교통공단 기반
+                                </span>
+                                <span class="text-xs text-slate-500 dark:text-slate-400 font-medium"><i class="fa-regular fa-calendar mr-1"></i> 교통안전 보고서</span>
+                            </div>
+                            <div class="w-14 h-14 rounded-2xl bg-violet-600/10 dark:bg-violet-500/20 text-violet-600 dark:text-violet-400 flex items-center justify-center text-2xl font-bold group-hover:scale-110 transition-transform">
+                                <i class="fa-solid fa-car-burst"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-violet-600 dark:group-hover:text-violet-400 transition-colors">
+                                    교통사고 위험 지역 및 패턴 분석 보고서
+                                </h3>
+                                <p class="text-slate-700 dark:text-slate-300 text-sm leading-relaxed">
+                                    도로교통공단(KoROAD) 교통사고 분석시스템 오픈데이터를 토대로 시간대별, 요일별, 사고 유형별 패턴을 정밀 진단하고 사고 다발 지역의 공통 위험 요인을 도출했습니다.
+                                </p>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">도로교통공단 공공데이터</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">사고 패턴 분석</span>
+                                <span class="px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-medium">GIS 시각화</span>
+                            </div>
+                        </div>
+                        <div class="pt-8 mt-8 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                            <span class="text-xs text-slate-500 font-medium">작성자: 박진욱</span>
+                            <button onclick="openModal('trafficModal')" class="px-5 py-2.5 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-medium text-sm shadow-md shadow-violet-500/20 transition-all flex items-center space-x-2">
+                                <span>보고서 전문 보기</span>
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-24 bg-white dark:bg-[#030712]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+                    <span class="px-3.5 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-950/80 border border-indigo-300 dark:border-indigo-800 text-indigo-800 dark:text-indigo-300 text-xs font-semibold uppercase tracking-wider">
+                        Technical Stack
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                        보유 기술 및 역량
+                    </h2>
+                    <p class="text-slate-700 dark:text-slate-300 text-base">
+                        데이터 수집부터 정제, 통계 분석, 그리고 직관적인 시각화까지 전 과정을 아우르는 기술 스택을 보유하고 있습니다.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="p-6 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-indigo-600/10 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-brands fa-python"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Python & Pandas</h3>
+                        <p class="text-sm text-slate-700 dark:text-slate-300">공공 데이터 파싱, 대용량 데이터 전처리, Numpy 및 Pandas를 활용한 고속 데이터 연산.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-violet-600/10 dark:bg-violet-500/20 text-violet-600 dark:text-violet-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">SQL & Database</h3>
+                        <p class="text-sm text-slate-700 dark:text-slate-300">관계형 데이터베이스 설계, 복잡한 쿼리 작성, 데이터 추출 및 최적화 역량.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-blue-600/10 dark:bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-chart-pie"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Tableau & Matplotlib</h3>
+                        <p class="text-sm text-slate-700 dark:text-slate-300">인사이트를 극대화하는 대시보드 구축 및 고품질 데이터 시각화 자료 제작.</p>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4 shadow-sm">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-600/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-file-invoice"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white">Research & Reporting</h3>
+                        <p class="text-sm text-slate-700 dark:text-slate-300">객관적인 통계 지표 해석을 바탕으로 한 정책 및 비즈니스 제안서 작성.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-24 bg-slate-100 dark:bg-[#060a17] border-t border-slate-200 dark:border-slate-800">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-6 space-y-6">
+                        <span class="px-3.5 py-1.5 rounded-full bg-indigo-100 dark:bg-indigo-950 text-indigo-800 dark:text-indigo-300 border border-indigo-300 dark:border-indigo-800 text-xs font-semibold uppercase tracking-wider">
+                            About Analyst
+                        </span>
+                        <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">
+                            데이터의 가치를 발견하는 분석가 박진욱입니다.
+                        </h2>
+                        <p class="text-slate-700 dark:text-slate-300 leading-relaxed">
+                            안녕하세요! 저는 공공데이터와 통계 모델링을 통해 사회적 가치를 창출하고 실질적인 의사결정을 돕는 데이터 분석가 박진욱입니다. 
+                            대학알리미 데이터를 통한 고등교육 및 진로 분석부터 도로교통공단 데이터를 활용한 교통안전 및 사고 예방 연구까지 다양한 분야에서 깊이 있는 인사이트를 도출해왔습니다.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center space-x-3 text-slate-800 dark:text-slate-200 font-medium">
+                                <i class="fa-solid fa-check text-indigo-600 dark:text-indigo-400"></i>
+                                <span>정확한 데이터 정제 및 통계적 검증</span>
+                            </div>
+                            <div class="flex items-center space-x-3 text-slate-800 dark:text-slate-200 font-medium">
+                                <i class="fa-solid fa-check text-indigo-600 dark:text-indigo-400"></i>
+                                <span>이해하기 쉬운 스토리텔링형 보고서 작성</span>
+                            </div>
+                            <div class="flex items-center space-x-3 text-slate-800 dark:text-slate-200 font-medium">
+                                <i class="fa-solid fa-check text-indigo-600 dark:text-indigo-400"></i>
+                                <span>지속적인 학습과 트렌드 분석 역량</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="contact" class="lg:col-span-6">
+                        <div class="glass-card rounded-3xl p-8 shadow-xl space-y-6">
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white">협업 및 연락처</h3>
+                            <p class="text-sm text-slate-700 dark:text-slate-300">
+                                데이터 분석 프로젝트 제안이나 연구 협업 문의는 언제든지 환영합니다. 아래로 연락 주시면 신속하게 회신드리겠습니다.
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4 p-4 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                                    <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-slate-500 font-medium">이메일</p>
+                                        <p class="text-sm font-semibold text-slate-900 dark:text-white">jinwook.park.data@example.com</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 p-4 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                                    <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold">
+                                        <i class="fa-solid fa-phone"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-slate-500 font-medium">연락처</p>
+                                        <p class="text-sm font-semibold text-slate-900 dark:text-white">010-XXXX-XXXX</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 p-4 rounded-2xl bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                                    <div class="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold">
+                                        <i class="fa-brands fa-github"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-slate-500 font-medium">GitHub Repository</p>
+                                        <p class="text-sm font-semibold text-slate-900 dark:text-white">github.com/jinwook-park-data</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white font-bold flex items-center justify-center text-sm">
+                    JW
+                </div>
+                <span class="text-sm text-slate-300 font-medium">&copy; 2026 박진욱 (Jinwook Park). All rights reserved.</span>
+            </div>
+            <div class="flex items-center space-x-6 text-sm">
+                <a href="#about" class="hover:text-white transition-colors">소개</a>
+                <a href="#reports" class="hover:text-white transition-colors">보고서</a>
+                <a href="#skills" class="hover:text-white transition-colors">기술</a>
+                <a href="#contact" class="hover:text-white transition-colors">연락처</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Career Report Modal -->
+    <div id="careerModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4 overflow-y-auto">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-300 dark:border-slate-800 p-6 sm:p-10 relative my-8">
+            <button onclick="closeModal('careerModal')" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="space-y-6">
+                <div class="flex items-center space-x-3">
+                    <span class="px-3 py-1 rounded-lg bg-indigo-100 dark:bg-indigo-950 text-indigo-800 dark:text-indigo-300 font-semibold text-xs uppercase tracking-wider">
+                        대학알리미 데이터 분석 보고서
+                    </span>
+                    <span class="text-xs text-slate-500">작성자: 박진욱</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+                    대학생 진로 및 취업 통계 심층 분석
+                </h2>
+                <div class="prose dark:prose-invert max-w-none space-y-4 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. 연구 개요 및 배경</h3>
+                    <p>본 보고서는 대한민국 고등교육기관의 공공 데이터 오픈소스인 <strong>'대학알리미'</strong> 데이터를 활용하여 대학 졸업생들의 진로 선택 경향, 취업률 변동 추이, 그리고 전공별·계열별 취업 격차를 심층 분석하기 위해 기획되었습니다.</p>
+                    
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">2. 데이터 수집 및 전처리</h3>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li><strong>수집 소스:</strong> 대학알리미 공공 개방 표준 데이터셋 (최근 3개년 취업률 및 진로 현황 통계)</li>
+                        <li><strong>전처리 방법:</strong> Python Pandas를 통한 결측치 정제, 대학 설립 유형(국공립/사립) 및 수도권/비수도권 이원화 분류 정합성 검증.</li>
+                    </ul>
+
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">3. 주요 분석 결과 및 인사이트</h3>
+                    <p>• <strong>전공별 취업률 양극화:</strong> 공학계열 및 의약계열의 취업률이 상대적으로 우세한 반면, 인문·사회계열은 진로 다변화 전략이 필수적인 것으로 나타났습니다.<br>
+                    • <strong>수도권 및 비수도권 격차:</strong> 유지취업률 지표에서 수도권 대학 졸업생의 고용 안정성이 소폭 높게 집계되었으나, 특정 특성화 대학의 경우 지역에 관계없이 매우 높은 취업 성과를 보였습니다.</p>
+
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">4. 결론 및 정책적 제언</h3>
+                    <p>대학 진로 지도 프로그램은 단순 취업률 제고를 넘어 전공 적합성을 고려한 맞춤형 진로 멘토링 체계로 고도화되어야 하며, 대학알리미 데이터의 정기적 시각화 대시보드 구축이 실효성 있는 대안이 될 수 있습니다.</p>
+                </div>
+                <div class="pt-6 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                    <button onclick="closeModal('careerModal')" class="px-6 py-2.5 rounded-xl bg-slate-900 dark:bg-indigo-600 hover:bg-slate-800 dark:hover:bg-indigo-500 text-white font-medium text-sm">
+                        닫기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Traffic Report Modal -->
+    <div id="trafficModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-slate-950/80 backdrop-blur-md p-4 overflow-y-auto">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border border-slate-300 dark:border-slate-800 p-6 sm:p-10 relative my-8">
+            <button onclick="closeModal('trafficModal')" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-slate-200 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="space-y-6">
+                <div class="flex items-center space-x-3">
+                    <span class="px-3 py-1 rounded-lg bg-violet-100 dark:bg-violet-950 text-violet-800 dark:text-violet-300 font-semibold text-xs uppercase tracking-wider">
+                        도로교통공단 데이터 분석 보고서
+                    </span>
+                    <span class="text-xs text-slate-500">작성자: 박진욱</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
+                    교통사고 위험 지역 및 패턴 분석 보고서
+                </h2>
+                <div class="prose dark:prose-invert max-w-none space-y-4 text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">1. 연구 목적</h3>
+                    <p>본 보고서는 <strong>도로교통공단(KoROAD)</strong> 교통사고 분석시스템(TAAS)의 오픈데이터를 바탕으로 주요 교통사고 발생 요인을 정밀 분석하고, 사고 다발 지역의 시공간적 패턴을 도출하여 지자체 교통안전 정책 수립을 위한 기초 자료를 제공하고자 합니다.</p>
+                    
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">2. 데이터 분석 방법론</h3>
+                    <ul class="list-disc pl-5 space-y-1">
+                        <li><strong>데이터셋:</strong> 도로교통공단 사고 유형별, 시간대별, 도로 형태별 통계 데이터</li>
+                        <li><strong>분석 기법:</strong> Python 및 SQL을 활용한 클러스터링 분석, 시간대별 빈도 분석, 공간 상관관계 분석</li>
+                    </ul>
+
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">3. 주요 분석 결과</h3>
+                    <p>• <strong>시간대 및 요일 패턴:</strong> 출퇴근 시간대와 주말 야간 시간대에 특정 교차로 구간에서 사고 건수가 집중되는 경향을 확인.<br>
+                    • <strong>사고 유형별 특성:</strong> 보행자 횡단 사고는 시인성이 떨어지는 야간 시간대와 이면도로에서 높은 빈도로 발생.<br>
+                    • <strong>위험 지역 특성:</strong> 신호등 체계의 복잡성과 차선 변경 구간이 겹치는 지점에서 추돌 사고 위험이 급증.</p>
+
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white">4. 정책 제언 및 결론</h3>
+                    <p>사고 다발 구역에 대한 스마트 신호 체계 도입, 야간 보행자 안전 시설물 확충, 그리고 실시간 교통 데이터 기반의 위험 구간 사전 경보 시스템 구축이 시급합니다.</p>
+                </div>
+                <div class="pt-6 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                    <button onclick="closeModal('trafficModal')" class="px-6 py-2.5 rounded-xl bg-slate-900 dark:bg-indigo-600 hover:bg-slate-800 dark:hover:bg-indigo-500 text-white font-medium text-sm">
+                        닫기
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme toggle function with comprehensive DOM classes
+        function toggleTheme() {
+            const html = document.documentElement;
+            const body = document.body;
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                body.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                html.classList.add('dark');
+                body.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal when clicking outside of modal content
+        window.onclick = function(event) {
+            const careerModal = document.getElementById('careerModal');
+            const trafficModal = document.getElementById('trafficModal');
+            if (event.target === careerModal) {
+                closeModal('careerModal');
+            }
+            if (event.target === trafficModal) {
+                closeModal('trafficModal');
+            }
+        }
+    </script>
+</body>
+</html>
