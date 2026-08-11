@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025년 부산대학교 학과별 주요 지표 및 경쟁력 심층 분석 보고서</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Pretendard (Modern Korean Font) -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Pretendard', 'sans-serif'],
+                    },
+                    colors: {
+                        pnu: {
+                            blue: '#003E7E',
+                            light: '#EBF4FA',
+                            accent: '#F37321',
+                            green: '#008C4A' // 밀양캠퍼스 연상 컬러
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'card': '0 10px 30px -5px rgba(0, 62, 126, 0.08)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f1f5f9;
+            color: #1e293b;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #003E7E 0%, #0056b3 100%);
+        }
+        .section-header {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+        .section-header::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60px;
+            height: 4px;
+            background-color: #F37321;
+            border-radius: 2px;
+        }
+        
+        /* Table Styles */
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .data-table th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            padding: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: middle;
+        }
+        .data-table tr:hover td {
+            background-color: #f8fafc;
+        }
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Bar Chart Styles within Table */
+        .bar-container {
+            width: 100%;
+            background-color: #e2e8f0;
+            border-radius: 9999px;
+            height: 0.5rem;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 9999px;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+    </style>
+</head>
+<body class="antialiased min-h-screen pb-12">
+
+    <!-- Header Hero Section -->
+    <header class="gradient-bg text-white pt-20 pb-24 px-6 relative overflow-hidden shadow-lg">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        
+        <!-- 홈 버튼 추가 -->
+        <div class="max-w-6xl mx-auto mb-6 relative z-10">
+            <a href="../index.html" class="inline-flex items-center space-x-2 bg-white/15 hover:bg-white/25 backdrop-blur-md px-4 py-2 rounded-xl text-sm font-medium border border-white/30 transition-all duration-200 shadow-sm hover:scale-[1.02]">
+                <i class="fas fa-home"></i>
+                <span>홈으로 가기</span>
+            </a>
+        </div>
+
+        <div class="max-w-6xl mx-auto relative z-10 flex flex-col md:flex-row justify-between items-end">
+            <div>
+                <div class="inline-flex items-center space-x-2 bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-medium mb-6 border border-white/30">
+                    <i class="far fa-chart-bar"></i>
+                    <span>2025 Data Analysis Report</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-black leading-tight tracking-tight mb-4 drop-shadow-md">
+                    2025년 부산대학교<br>
+                    <span class="text-yellow-400">학과별 주요 지표 및 경쟁력</span><br>
+                    심층 분석 보고서
+                </h1>
+                <p class="text-blue-100 text-lg md:text-xl font-light max-w-2xl mt-4 leading-relaxed">
+                    본 보고서는 입시, 취업, 재정 데이터를 기반으로 부산대학교의 학문적 깊이와 산업 실무 역량을 종합적으로 평가합니다.
+                </p>
+            </div>
+            <div class="mt-8 md:mt-0 text-right opacity-80">
+                <p class="text-sm">발행일: 2025. 01</p>
+                <p class="text-xs mt-1">기준 연도: 2025년</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20 space-y-8">
+
+        <!-- 1. 캠퍼스 현황 -->
+        <section class="bg-white rounded-2xl shadow-card p-8 md:p-10 fade-in-up">
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-800 section-header">
+                <i class="fas fa-university text-pnu-blue mr-2"></i> 1. 학과 현황 및 캠퍼스 특성화
+            </h2>
+            
+            <p class="text-slate-600 mb-8 text-lg">부산대학교는 본교(금정)를 중심으로 양산과 밀양의 특성화 캠퍼스를 유기적으로 운영하여 <strong class="text-pnu-blue">학문적 깊이</strong>와 <strong class="text-pnu-blue">산업 실무 역량</strong>을 동시에 확보하고 있습니다.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 본교 -->
+                <div class="border border-slate-200 rounded-xl p-6 hover:border-pnu-blue transition-colors group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <i class="fas fa-landmark text-6xl"></i>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-50 text-pnu-blue rounded-lg flex items-center justify-center text-xl mb-4">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">부산 금정구 <span class="text-sm font-normal text-slate-500 bg-slate-100 px-2 py-0.5 rounded ml-1">본교</span></h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        대학 행정의 중추. 인문사회, 공학, 자연과학, 예체능 등 <strong>학문의 전 분야가 집약</strong>된 메인 캠퍼스입니다.
+                    </p>
+                </div>
+
+                <!-- 양산캠 -->
+                <div class="border border-slate-200 rounded-xl p-6 hover:border-teal-600 transition-colors group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <i class="fas fa-hospital-user text-6xl"></i>
+                    </div>
+                    <div class="w-12 h-12 bg-teal-50 text-teal-600 rounded-lg flex items-center justify-center text-xl mb-4">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">경남 양산시 <span class="text-sm font-normal text-slate-500 bg-slate-100 px-2 py-0.5 rounded ml-1">양산캠퍼스</span></h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        의학, 치의학, 한의학, 간호학 및 의생명융합공학 집중. <strong>보건의료 특성화 및 첨단 의생명</strong> 연구/교육 거점입니다.
+                    </p>
+                </div>
+
+                <!-- 밀양캠 -->
+                <div class="border border-slate-200 rounded-xl p-6 hover:border-pnu-green transition-colors group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <i class="fas fa-leaf text-6xl"></i>
+                    </div>
+                    <div class="w-12 h-12 bg-green-50 text-pnu-green rounded-lg flex items-center justify-center text-xl mb-4">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">경남 밀양시 <span class="text-sm font-normal text-slate-500 bg-slate-100 px-2 py-0.5 rounded ml-1">밀양캠퍼스</span></h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">
+                        바이오산업기계, 나노융합, 조경 등 <strong>생명자원과학 및 나노 공학 특화</strong>. 지역 산업 밀착 성과를 창출합니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-6 bg-slate-50 border border-slate-200 rounded-lg p-5 flex items-start space-x-4">
+                <div class="bg-indigo-100 text-indigo-600 p-2 rounded-full shrink-0">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-800 mb-1">특수 교육 과정 운영 (계약학과 및 학석사통합)</h4>
+                    <p class="text-slate-600 text-sm">
+                        스마트가전공학과, 발전공학과 등 <strong>산업체 연계형 '계약학과'</strong>와 <strong>'학석사통합과정'</strong>을 운영하여 현장 맞춤형 고도화 전문 인력을 적극 양성 중입니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 입시 경쟁력 분석 -->
+        <section class="bg-white rounded-2xl shadow-card p-8 md:p-10 fade-in-up delay-100">
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-800 section-header">
+                <i class="fas fa-users text-pnu-blue mr-2"></i> 2. 입시 경쟁력 분석: 신입생 경쟁률 TOP 10
+            </h2>
+            
+            <p class="text-slate-600 mb-6">
+                보건의료 계열의 압도적 강세 속에서 어문 계열 및 건축 분야의 높은 선호도가 관찰됩니다. 특히 <strong>약학부</strong>는 독보적인 위치를 점하고 있습니다.
+            </p>
+
+            <div class="overflow-x-auto border border-slate-200 rounded-xl shadow-sm mb-6">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th class="w-16 text-center">순위</th>
+                            <th class="text-left">학과명</th>
+                            <th class="text-left hidden md:table-cell">표준분류계열(중)</th>
+                            <th class="w-32 text-center text-pnu-blue">경쟁률 (n:1)</th>
+                            <th class="w-1/3 hidden sm:table-cell text-left">상대적 지표</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-blue-50/30">
+                            <td class="text-center font-bold text-pnu-blue text-lg">1</td>
+                            <td class="font-bold text-slate-800">약학부(통합6년제)</td>
+                            <td class="text-slate-500 text-sm hidden md:table-cell">자연과학계열 - 약학</td>
+                            <td class="text-center font-black text-xl text-pnu-accent">24.5</td>
+                            <td class="hidden sm:table-cell">
+                                <div class="w-full bg-slate-200 rounded-full h-2">
+                                    <div class="bg-pnu-accent h-2 rounded-full" style="width: 100%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center font-semibold text-slate-500">2</td>
+                            <td class="font-semibold text-slate-800">불어불문학과</td>
+                            <td class="text-slate-500 text-sm hidden md:table-cell">인문사회계열 - 언어·문학</td>
+                            <td class="text-center font-bold text-pnu-blue text-lg">17.9</td>
+                            <td class="hidden sm:table-cell">
+                                <div class="w-full bg-slate-200 rounded-full h-2">
+                                    <div class="bg-pnu-blue h-2 rounded-full opacity-80" style="width: 73%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center font-semibold text-slate-500">3</td>
+                            <td class="font-semibold text-slate-800">건축학과(5년제)</td>
+                            <td class="text-slate-500 text-sm hidden md:table-cell">공학계열 - 건설</td>
+                            <td class="text-center font-bold text-pnu-blue text-lg">13.8</td>
+                            <td class="hidden sm:table-cell">
+                                <div class="w-full bg-slate-200 rounded-full h-2">
+                                    <div class="bg-pnu-blue h-2 rounded-full opacity-60" style="width: 56%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center text-slate-500">4</td>
+                            <td class="font-medium text-slate-700">화공생명공학과</td>
+                            <td class="text-slate-500 text-sm hidden md:table-cell">공학계열 - 화공·고분자·에너지</td>
+                            <td class="text-center font-semibold text-slate-700">13.4</td>
+                            <td class="hidden sm:table-cell">
+                                <div class="w-full bg-slate-200 rounded-full h-2">
+                                    <div class="bg-slate-400 h-2 rounded-full" style="width: 54%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center text-slate-500">5</td>
+                            <td class="font-medium text-slate-700">한문학과</td>
+                            <td class="text-slate-500 text-sm hidden md:table-cell">인문사회계열 - 언어·문학</td>
+                            <td class="text-center font-semibold text-slate-700">13.2</td>
+                            <td class="hidden sm:table-cell">
+                                <div class="w-full bg-slate-200 rounded-full h-2">
+                                    <div class="bg-slate-400 h-2 rounded-full" style="width: 53%"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- 6~10위 간소화 -->
+                        <tr><td class="text-center text-slate-400">6</td><td class="text-slate-600">스포츠과학과</td><td class="text-slate-400 text-sm hidden md:table-cell">예체능계열 - 무용·체육</td><td class="text-center text-slate-600">12.8</td><td class="hidden sm:table-cell"><div class="w-full bg-slate-100 rounded-full h-1.5"><div class="bg-slate-300 h-1.5 rounded-full" style="width: 52%"></div></div></td></tr>
+                        <tr><td class="text-center text-slate-400">7</td><td class="text-slate-600">미디어커뮤니케이션학과</td><td class="text-slate-400 text-sm hidden md:table-cell">인문사회계열 - 사회과학</td><td class="text-center text-slate-600">12.4</td><td class="hidden sm:table-cell"><div class="w-full bg-slate-100 rounded-full h-1.5"><div class="bg-slate-300 h-1.5 rounded-full" style="width: 50%"></div></div></td></tr>
+                        <tr><td class="text-center text-slate-400">8</td><td class="text-slate-600">공공정책학부</td><td class="text-slate-400 text-sm hidden md:table-cell">인문사회계열 - 사회과학</td><td class="text-center text-slate-600">12.4</td><td class="hidden sm:table-cell"><div class="w-full bg-slate-100 rounded-full h-1.5"><div class="bg-slate-300 h-1.5 rounded-full" style="width: 50%"></div></div></td></tr>
+                        <tr><td class="text-center text-slate-400">9</td><td class="text-slate-600">의예과</td><td class="text-slate-400 text-sm hidden md:table-cell">자연과학계열 - 의료예과</td><td class="text-center text-slate-600">12.4</td><td class="hidden sm:table-cell"><div class="w-full bg-slate-100 rounded-full h-1.5"><div class="bg-slate-300 h-1.5 rounded-full" style="width: 50%"></div></div></td></tr>
+                        <tr><td class="text-center text-slate-400">10</td><td class="text-slate-600">조경학과</td><td class="text-slate-400 text-sm hidden md:table-cell">공학계열 - 건설</td><td class="text-center text-slate-600">11.7</td><td class="hidden sm:table-cell"><div class="w-full bg-slate-100 rounded-full h-1.5"><div class="bg-slate-300 h-1.5 rounded-full" style="width: 47%"></div></div></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Insight Box -->
+            <div class="bg-orange-50 border-l-4 border-pnu-accent p-5 rounded-r-lg">
+                <h4 class="font-bold text-orange-800 flex items-center mb-2">
+                    <i class="fas fa-lightbulb mr-2"></i> 전문가 분석: 인문사회계열의 이례적 강세
+                </h4>
+                <p class="text-slate-700 text-sm leading-relaxed">
+                    인문사회계열 중 <strong>불어불문학과(2위)</strong>와 <strong>한문학과(5위)</strong>가 상위권에 랭크된 것은 이례적입니다. 이는 기초 학문에 대한 부산대학교의 확고한 브랜드 인지도와 함께, 대학원 과정의 파격적인 장학 혜택(등록금의 6배 이상) 등 재정적 유인책이 복합적으로 작용한 결과로 분석됩니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- 3. 취업 성과 분석 -->
+        <section class="bg-white rounded-2xl shadow-card p-8 md:p-10 fade-in-up delay-200">
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-800 section-header">
+                <i class="fas fa-briefcase text-pnu-blue mr-2"></i> 3. 취업 성과 분석: 캠퍼스 특성화 효과
+            </h2>
+            
+            <p class="text-slate-600 mb-8">
+                전통적 공학 강세 속에서 <strong>밀양 캠퍼스의 생명자원과학 분야</strong>가 실질적 취업을 견인하고 있으며, <strong>양산 캠퍼스의 첨단 및 계약학과</strong>들은 취업률 100%를 달성하며 두각을 나타냅니다.
+            </p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- 좌측: 학부 취업률 TOP 5 -->
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">학부 취업률 TOP 5</h3>
+                    <div class="space-y-5 bg-slate-50 p-6 rounded-xl border border-slate-200">
+                        <!-- Item 1 -->
+                        <div>
+                            <div class="flex justify-between items-end mb-1">
+                                <div class="font-bold text-slate-800">
+                                    1. 생명환경화학과 <span class="text-xs font-normal bg-pnu-green text-white px-2 py-0.5 rounded ml-1">밀양</span>
+                                </div>
+                                <div class="font-black text-lg text-pnu-accent">83.3%</div>
+                            </div>
+                            <div class="bar-container bg-slate-200 h-2.5">
+                                <div class="bar-fill bg-pnu-accent" style="width: 83.3%"></div>
+                            </div>
+                        </div>
+                        <!-- Item 2 -->
+                        <div>
+                            <div class="flex justify-between items-end mb-1">
+                                <div class="font-semibold text-slate-700">
+                                    2. 기계공학부 <span class="text-xs font-normal bg-slate-200 text-slate-600 px-2 py-0.5 rounded ml-1">본교</span>
+                                </div>
+                                <div class="font-bold text-pnu-blue">78.4%</div>
+                            </div>
+                            <div class="bar-container">
+                                <div class="bar-fill bg-pnu-blue opacity-90" style="width: 78.4%"></div>
+                            </div>
+                        </div>
+                        <!-- Item 3 -->
+                        <div>
+                            <div class="flex justify-between items-end mb-1">
+                                <div class="font-semibold text-slate-700">
+                                    3. 바이오산업기계공학과 <span class="text-xs font-normal bg-pnu-green text-white px-2 py-0.5 rounded ml-1">밀양</span>
+                                </div>
+                                <div class="font-bold text-pnu-blue">76.5%</div>
+                            </div>
+                            <div class="bar-container">
+                                <div class="bar-fill bg-pnu-blue opacity-80" style="width: 76.5%"></div>
+                            </div>
+                        </div>
+                        <!-- Item 4 -->
+                        <div>
+                            <div class="flex justify-between items-end mb-1">
+                                <div class="font-semibold text-slate-700">
+                                    4. 조선·해양공학과 <span class="text-xs font-normal bg-slate-200 text-slate-600 px-2 py-0.5 rounded ml-1">본교</span>
+                                </div>
+                                <div class="font-bold text-slate-600">76.0%</div>
+                            </div>
+                            <div class="bar-container">
+                                <div class="bar-fill bg-slate-400" style="width: 76.0%"></div>
+                            </div>
+                        </div>
+                        <!-- Item 5 -->
+                        <div>
+                            <div class="flex justify-between items-end mb-1">
+                                <div class="font-semibold text-slate-700">
+                                    5. 항공우주공학과 <span class="text-xs font-normal bg-slate-200 text-slate-600 px-2 py-0.5 rounded ml-1">본교</span>
+                                </div>
+                                <div class="font-bold text-slate-600">74.1%</div>
+                            </div>
+                            <div class="bar-container">
+                                <div class="bar-fill bg-slate-400" style="width: 74.1%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-3 flex items-center">
+                        <i class="fas fa-info-circle mr-1"></i> 상위 5개 중 2개가 밀양캠퍼스 소속으로 지역 특성화 전략의 성공을 의미합니다.
+                    </p>
+                </div>
+
+                <!-- 우측: 취업률 100% -->
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 border-b border-slate-200 pb-2">취업률 100% 달성 학과</h3>
+                    <div class="bg-gradient-to-br from-[#002f61] to-[#004e9c] rounded-xl p-6 text-white h-full relative overflow-hidden shadow-inner">
+                        <i class="fas fa-medal absolute -right-4 -bottom-4 text-9xl opacity-10"></i>
+                        
+                        <div class="space-y-6 relative z-10">
+                            <!-- 학부 -->
+                            <div>
+                                <h4 class="text-yellow-400 font-bold mb-3 flex items-center border-b border-white/20 pb-2">
+                                    <i class="fas fa-graduation-cap mr-2"></i> 학부 과정
+                                </h4>
+                                <ul class="space-y-3">
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                                        <div>
+                                            <span class="font-semibold text-lg">데이터사이언스전공</span>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <i class="fas fa-check text-green-400 mt-1 mr-2"></i>
+                                        <div>
+                                            <span class="font-semibold text-lg">의생명공학전공</span>
+                                            <p class="text-blue-200 text-sm mt-0.5">양산 캠퍼스 소재, 의공학 특성화 성과 입증</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            
+                            <!-- 대학원 -->
+                            <div>
+                                <h4 class="text-yellow-400 font-bold mb-3 flex items-center border-b border-white/20 pb-2">
+                                    <i class="fas fa-user-graduate mr-2"></i> 계약/특수 대학원 전원 취업
+                                </h4>
+                                <div class="bg-white/10 rounded-lg p-3 text-sm leading-relaxed border border-white/20 backdrop-blur-sm">
+                                    ICT융합학과, 건축학전공(산업대학원), 토목공학전공(산업대학원), 기계부품시스템전공, 스마트가전공조시스템학과 등 다수의 산업 밀착형 전공
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 재정 지원 -->
+        <section class="bg-white rounded-2xl shadow-card p-8 md:p-10 fade-in-up delay-300">
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-800 section-header">
+                <i class="fas fa-hand-holding-usd text-pnu-blue mr-2"></i> 4. 재정적 지원: 장학금 수혜의 전략적 배치
+            </h2>
+            
+            <p class="text-slate-600 mb-6">
+                등록금 대비 장학금 비율 분석 결과, 기초학문 보존과 첨단 연구 인력 양성을 위한 <strong>선택과 집중 형태의 전략적 재정 투입</strong>이 확인됩니다.
+            </p>
+
+            <div class="overflow-x-auto border border-slate-200 rounded-xl shadow-sm mb-6">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th class="text-left">학과명 (과정)</th>
+                            <th class="text-right">평균등록금(원)</th>
+                            <th class="text-right">장학금(원)</th>
+                            <th class="text-center text-pnu-blue bg-blue-50/50">장학금/등록금 배율</th>
+                            <th class="text-left hidden sm:table-cell">지원 목적 (비고)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 한문학과 강조 -->
+                        <tr class="bg-orange-50/50 border-l-4 border-l-pnu-accent">
+                            <td class="font-bold text-slate-800">한문학과 (일반대학원)</td>
+                            <td class="text-right text-slate-500">2,400,000</td>
+                            <td class="text-right font-medium text-slate-700">14,943,689</td>
+                            <td class="text-center font-black text-xl text-pnu-accent bg-orange-50/30">6.22배</td>
+                            <td class="text-slate-600 text-sm hidden sm:table-cell">
+                                <span class="bg-orange-100 text-orange-800 px-2 py-1 rounded-md text-xs font-semibold mr-1">기초학문</span>
+                                기초 인문학 육성
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-slate-700">융합의과학과 (일반대학원)</td>
+                            <td class="text-right text-slate-500">3,150,000</td>
+                            <td class="text-right font-medium text-slate-700">12,554,468</td>
+                            <td class="text-center font-bold text-pnu-blue text-lg bg-blue-50/20">3.99배</td>
+                            <td class="text-slate-600 text-sm hidden sm:table-cell">첨단 의과학 인재 양성</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-slate-700">수학과 (일반대학원)</td>
+                            <td class="text-right text-slate-500">3,150,000</td>
+                            <td class="text-right font-medium text-slate-700">12,533,378</td>
+                            <td class="text-center font-bold text-pnu-blue text-lg bg-blue-50/20">3.98배</td>
+                            <td class="text-slate-600 text-sm hidden sm:table-cell">기초 과학 연구 지원</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-slate-700">의학과 (대학)</td>
+                            <td class="text-right text-slate-500">10,100,000</td>
+                            <td class="text-right font-medium text-slate-700">29,394,696</td>
+                            <td class="text-center font-bold text-slate-700 text-lg">2.91배</td>
+                            <td class="text-slate-600 text-sm hidden sm:table-cell">최고 수준 절대금액 지원</td>
+                        </tr>
+                        <tr>
+                            <td class="font-semibold text-slate-700">전기전자공학부 반도체공학전공</td>
+                            <td class="text-right text-slate-500">4,728,000</td>
+                            <td class="text-right font-medium text-slate-700">7,100,908</td>
+                            <td class="text-center font-bold text-slate-700 text-lg">1.50배</td>
+                            <td class="text-slate-600 text-sm hidden sm:table-cell">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-md text-xs font-semibold mr-1">첨단산업</span>
+                                학부 특성화 트랙 지원
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                    <h5 class="font-bold text-slate-800 mb-1 text-sm flex items-center"><i class="fas fa-search mr-2 text-slate-400"></i>기초 인문 계열 파격 지원</h5>
+                    <p class="text-sm text-slate-600">일반대학원 한문학과의 장학 비율(6.22배)은 취업률이 낮은 기초 학문 학생들이 경제적 부담 없이 연구에 전념할 수 있도록 하는 대학의 <strong>의도적 보상 체계</strong>입니다.</p>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                    <h5 class="font-bold text-pnu-blue mb-1 text-sm flex items-center"><i class="fas fa-star mr-2 text-yellow-500"></i>학석사통합과정의 고효율성</h5>
+                    <p class="text-sm text-slate-700"><strong>치의학과 학석사통합</strong>은 등록금(305만원)이 치의학전문대학원(779만원) 대비 저렴하면서도 <strong>취업률 97.5%</strong>를 기록하여 비용 효율성이 매우 높습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 계열별 종합 분석 -->
+        <section class="bg-white rounded-2xl shadow-card p-8 md:p-10 fade-in-up delay-300">
+            <h2 class="text-2xl md:text-3xl font-bold text-slate-800 section-header">
+                <i class="fas fa-layer-group text-pnu-blue mr-2"></i> 5. 계열별 주요 지표 종합
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                
+                <!-- 공학 -->
+                <div class="border border-slate-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mr-3 text-lg">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-800">공학계열</h3>
+                    </div>
+                    <div class="text-sm text-blue-600 font-semibold mb-3"># 산업 현장 밀착형 성과 도출</div>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                        <li><strong>기계(78.4%), 조선·해양(76%), 항공우주(74.1%)</strong> 등 전통적 제조 강점 분야가 취업률 상위 독점.</li>
+                        <li>건축학과(13.8:1), 화공생명공학(13.4:1) 입시 경쟁력 우수.</li>
+                    </ul>
+                </div>
+
+                <!-- 인문사회 -->
+                <div class="border border-slate-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center mr-3 text-lg">
+                            <i class="fas fa-book-reader"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-800">인문사회계열</h3>
+                    </div>
+                    <div class="text-sm text-purple-600 font-semibold mb-3"># 입시 선호도와 재정 지원의 결합</div>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                        <li>경영(1,073명), 경제(409명) 등 대규모 학제 안정적 수요.</li>
+                        <li><strong>불어불문(17.9:1), 한문학(13.2:1)</strong> 높은 경쟁률은 대학원의 전폭적 장학 지원(학문 연속성 보장)과 연계.</li>
+                    </ul>
+                </div>
+
+                <!-- 자연/의학 -->
+                <div class="border border-slate-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 rounded-full bg-teal-100 text-teal-600 flex items-center justify-center mr-3 text-lg">
+                            <i class="fas fa-dna"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-800">자연과학/의학계열</h3>
+                    </div>
+                    <div class="text-sm text-teal-600 font-semibold mb-3"># 압도적 브랜드 가치 및 연구 몰입</div>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                        <li><strong>약학부(24.5:1), 의예과(12.4:1)</strong> 입시 최상위 유지.</li>
+                        <li>의학계열(등록금 3배 장학금), 화학과 대학원 등 기초과학 분야에 강력한 재정 지원 뒷받침.</li>
+                    </ul>
+                </div>
+
+                <!-- 예체능 -->
+                <div class="border border-slate-200 rounded-xl p-6 hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center mr-3 text-lg">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="font-bold text-lg text-slate-800">예체능계열</h3>
+                    </div>
+                    <div class="text-sm text-pink-600 font-semibold mb-3"># 특정 전공 입시 집중 및 실기 역량</div>
+                    <ul class="text-sm text-slate-600 space-y-2 list-disc list-inside">
+                        <li>스포츠과학과(12.8:1) 입시 강세.</li>
+                        <li><strong>무용학과 취업률 72.4%</strong> 기록, 실기 중심 학과의 사회 진출 가능성 입증.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 6. 결론 (Highlight Box) -->
+        <section class="bg-slate-900 rounded-2xl shadow-xl p-8 md:p-12 text-white fade-in-up delay-300 relative overflow-hidden border-t-4 border-pnu-accent">
+            <div class="absolute right-0 top-0 opacity-5 text-[15rem] -mt-10 -mr-10">
+                <i class="fas fa-quote-right"></i>
+            </div>
+            
+            <h2 class="text-2xl md:text-3xl font-black mb-10 flex items-center relative z-10">
+                <span class="bg-pnu-accent text-white w-10 h-10 rounded-lg flex items-center justify-center mr-4 text-xl">
+                    <i class="fas fa-flag-checkered"></i>
+                </span>
+                6. 종합 결론 및 평가
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 relative z-10">
+                <!-- 입시 & 취업 -->
+                <div class="space-y-8">
+                    <div>
+                        <div class="flex items-center mb-2">
+                            <span class="px-2.5 py-1 bg-blue-500/20 text-blue-300 text-xs font-bold rounded mr-3 border border-blue-500/30">입시</span>
+                            <h3 class="text-lg font-bold text-white">보건의료 및 기초 인문의 동반 강세</h3>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed pl-12 border-l border-slate-700">
+                            약학부(24.5:1)의 브랜드 파워 증명과 더불어, 불어불문학과(17.9:1) 등 인문계열의 높은 선호도는 국립대 특유의 학문적 권위와 안정적 장학 시스템이 주효했음을 시사합니다.
+                        </p>
+                    </div>
+                    
+                    <div>
+                        <div class="flex items-center mb-2">
+                            <span class="px-2.5 py-1 bg-green-500/20 text-green-300 text-xs font-bold rounded mr-3 border border-green-500/30">취업</span>
+                            <h3 class="text-lg font-bold text-white">캠퍼스 다변화 성공 및 특성화 효과</h3>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed pl-12 border-l border-slate-700">
+                            취업률 상위 학과 중 생명환경화학과 등 밀양 캠퍼스 소속 전공들의 선전은 캠퍼스별 특성화 전략이 실무 역량 강화와 실질적 취업 성과로 직결되고 있음을 증명합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 재정 & 종합 -->
+                <div class="space-y-8">
+                    <div>
+                        <div class="flex items-center mb-2">
+                            <span class="px-2.5 py-1 bg-yellow-500/20 text-yellow-300 text-xs font-bold rounded mr-3 border border-yellow-500/30">재정</span>
+                            <h3 class="text-lg font-bold text-white">기초 학문과 첨단 전공 투트랙 집중 투자</h3>
+                        </div>
+                        <p class="text-slate-300 text-sm leading-relaxed pl-12 border-l border-slate-700">
+                            한문학과 대학원(6.22배)의 순수 학문 보존과 반도체공학전공(1.5배)의 산업 인력 양성이라는 양극단의 목표를 달성하기 위해 재원을 전략적이고 효율적으로 배분하고 있습니다.
+                        </p>
+                    </div>
+
+                    <div class="bg-white/10 p-5 rounded-xl border border-white/20 backdrop-blur-sm mt-4">
+                        <div class="flex items-center mb-3">
+                            <span class="px-2.5 py-1 bg-pnu-accent text-white text-xs font-bold rounded mr-3 shadow-sm">핵심 인사이트</span>
+                            <h3 class="text-lg font-bold text-orange-300">비용 대비 최고 효율: 학석사통합과정</h3>
+                        </div>
+                        <p class="text-slate-200 text-sm leading-relaxed font-medium">
+                            치의학과 및 한의학과의 학석사통합과정은 일반 전문대학원 대비 저렴한 등록금으로 95% 이상의 압도적 취업률을 보장하여, 현재 학생들에게 가장 매력적인 '고효율 경쟁력 학과'로 분석됩니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="max-w-6xl mx-auto mt-16 px-6 text-center border-t border-slate-200 pt-8 text-slate-500">
+        <p class="text-sm font-medium">본 보고서는 2025년 기준 데이터를 바탕으로 작성된 학과 경쟁력 심층 분석 자료입니다.</p>
+        <p class="text-xs mt-2 opacity-75">&copy; 2025 PNU Data Analysis Report. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
